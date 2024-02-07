@@ -7,22 +7,27 @@ import {
 } from '.';
 
 describe('BankAccount', () => {
-  const accountForTest = getBankAccount(123);
+  let accountForTest: BankAccount;
+
+  beforeEach(() => {
+    accountForTest = getBankAccount(150);
+  })
 
   test('should create account with initial balance', () => {
     // Write your test here
-    expect(accountForTest instanceof BankAccount).toBeTruthy();
-    expect(accountForTest.getBalance()).toBe(123);
+    expect(accountForTest).toBeInstanceOf(BankAccount);
+    expect(accountForTest.getBalance()).toBe(150);
   });
 
   test('should throw InsufficientFundsError error when withdrawing more than balance', () => {
     // Write your test here
-    expect(() => accountForTest.withdraw(124)).toThrowError(InsufficientFundsError);
+    expect(() => accountForTest.withdraw(200)).toThrowError(InsufficientFundsError);
   });
 
   test('should throw error when transferring more than balance', () => {
     // Write your test here
-    expect(() => accountForTest.transfer(124, new BankAccount(100))).toThrowError(
+    const toTestAccout = getBankAccount(100);
+    expect(() => accountForTest.transfer(200, toTestAccout)).toThrowError(
       InsufficientFundsError,
     );
   });
@@ -34,18 +39,18 @@ describe('BankAccount', () => {
 
   test('should deposit money', () => {
     // Write your test here
-    expect(accountForTest.deposit(100).getBalance()).toBe(223);
+    expect(accountForTest.deposit(100).getBalance()).toBe(250);
   });
 
   test('should withdraw money', () => {
     // Write your test here
-    expect(accountForTest.withdraw(100).getBalance()).toBe(123);
+    expect(accountForTest.withdraw(100).getBalance()).toBe(50);
   });
 
   test('should transfer money', () => {
     // Write your test here
-    const toTestAccout = getBankAccount(277);
-    expect(accountForTest.transfer(23, toTestAccout).getBalance()).toBe(100);
+    const toTestAccout = getBankAccount(250);
+    expect(accountForTest.transfer(50, toTestAccout).getBalance()).toBe(100);
     expect(toTestAccout.getBalance()).toBe(300);
   });
 
