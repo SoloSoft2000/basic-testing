@@ -81,7 +81,6 @@ describe('readFileAsynchronously', () => {
     jest.spyOn(fs, 'existsSync').mockReturnValue(false);
     const pathToFile = 'test.txt';
     const result = await readFileAsynchronously(pathToFile);
-    console.log(result);
     expect(result).toBeNull();
   });
 
@@ -92,7 +91,6 @@ describe('readFileAsynchronously', () => {
     jest.spyOn(promises, 'readFile').mockResolvedValue('Content!');
     const pathToFile = 'test.txt';
     const result = await readFileAsynchronously(pathToFile);
-    console.log(result);
     expect(result).toBe('Content!');
   });
 });
