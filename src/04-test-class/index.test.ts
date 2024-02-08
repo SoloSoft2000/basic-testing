@@ -11,7 +11,7 @@ describe('BankAccount', () => {
 
   beforeEach(() => {
     accountForTest = getBankAccount(150);
-  })
+  });
 
   test('should create account with initial balance', () => {
     // Write your test here
@@ -21,7 +21,9 @@ describe('BankAccount', () => {
 
   test('should throw InsufficientFundsError error when withdrawing more than balance', () => {
     // Write your test here
-    expect(() => accountForTest.withdraw(200)).toThrowError(InsufficientFundsError);
+    expect(() => accountForTest.withdraw(200)).toThrowError(
+      InsufficientFundsError,
+    );
   });
 
   test('should throw error when transferring more than balance', () => {
@@ -34,7 +36,9 @@ describe('BankAccount', () => {
 
   test('should throw error when transferring to the same account', () => {
     // Write your test here
-    expect(() => accountForTest.transfer(100, accountForTest)).toThrowError(TransferFailedError);
+    expect(() => accountForTest.transfer(100, accountForTest)).toThrowError(
+      TransferFailedError,
+    );
   });
 
   test('should deposit money', () => {
